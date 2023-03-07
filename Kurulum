@@ -95,6 +95,11 @@ Intellij- src-test-java icine bir class olusturalim.
 
 adi Appium_Deneme olabilir.
 
+hesapmakinesi apk sini https://github.com/testimio/appium-dom-utils/blob/master/test/calculator.apk 
+adresinden indirebiliriz.
+
+///////////////////////////////////////////////////////
+
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -125,4 +130,4 @@ public class Appium_Deneme {
 
 //////////////////////////////////////////////////////////////////
 
-
+hem appium desktop hem de sanal telefonumuz calisir bicimdeyken @test annotation li testimizi calistiriyoruz.
