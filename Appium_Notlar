@@ -1,0 +1,37 @@
+-Appium hem IOS hen ANDROID hem de Windows cihazlari test edebilir.
+
+-Native App: yalnizca Google play veya appstore dan indirilebilen application lardir.
+-Mobile Web App: telefonlarin tarayicilari vasitasiyla kullanabildigimiz Web siteleridir.
+-Hybrid App: Hem store lardan hem de telefon browserlarindan erisbildigimiz aplication lardir.
+
+-Appium disinda; Robotium, uiautomator, Espresso, Calabash gibi mobil testing araclari mevcuttur.
+-Appium, tüm yazilim dillerini desteklerken Calabash(Ruby) haric digerleri sadece java ile calisir.
+-Appium ve Calabash hem Android hem IOS test edebilirken(multi-platform), digerleri sadece android testi yapar.
+
+-Appium- Open source bir kaynaktir.(indir kullan) bu yüzden müsteri hizmetleri yok, problem varsa google dan arastir cöz.
+
+-Emulator cihazlar: Android isletim sistemi olan cihazlar.
+-Simulator cihazlar: IOS isletim sistemi kullanan cihazlar.
+
+#Built-in Aplication: cihazlara fabrika ayarlarinda hazir yüklenmis uygulamalar. hesap makinesi, mesaj, arama vs
+
+-Appium un calismasi: 
+Client Appium Server üzerinden Cihaza bir request gönderir. response alir.
+Client bir IDE(Intellij) ile yazdigi (JAVA) kodlarini JSon wire protokolu ile Appium Server(Node JS) a iletir(API gibi),
+Appium server da;
+  UiAutomator2 framework u ile Android bir cihaza;
+  XCUITest framework u ile IOS bir cihaza requesti iletir.
+  ayni zamanda gercek cihazi da kablo ile baglayarakk test edebiliriz.
+
+Limitleri:
+-Appium, Android 4.1 in altini desteklemez.
+-yavas calisir
+-toast mesajlari desteklemez.(yei uygulama yüklendi uyari msji gibi kalip mesajlar.
+
+-Appium ile birden cok testi farkli cihazlar icin yapabilirsiniz.
+
+-DesiredCapabilities(DC): yazilan kodlarin nerede kullanilacagini belirler ve cihazla baglanti kurar(appium servisi üzerinde cihazi bulur).
+
+
+
+
