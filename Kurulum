@@ -1,0 +1,128 @@
+bilgisayarda Java kurulu olmali (1.8 sürümü)
+  cmd den Java -version yazarak teyit edebiliriz.
+  
+intellij yüklü olmali  
+
+Androidstudio(arctic fox) yüklü olmali
+  https://developer.android.com/studio adresinden indiriyoruz ve tavsiye edilenlerle kuruyoruz.
+  
+uygulama acildktan sonra more action a tiklayip SDK Manager dan ayarlarimiza bakiyoruz. 
+
+*alttaki hide kisminda tik olmamali
+
+SDK platform da android 10 sectik 
+SDK tools da:
+  Android SDK build Tools
+  Android Emulator
+  Android SDK Platform-tools
+  Android SDK Tools(Obsolote)
+  Intel x86 Emulator Accelerator(HAXM installer) secili olsun.
+  
+yine more action kismindan  virtual decive manager kismindan sanal telefonu olusturuyoruz.
+
+sanal cihazi actiktan sonra mausla ekrani yukari sürükleyerek ayarlar a giriyoruz
+
+ayarlarin en altinda About emulated decive e tikliyooruz
+
+yine en altta Build number kismina 7 kez tikliyoruz
+
+Artik developer olduk!!!
+
+sonra bir geri gelip sistem e giriyoruz
+
+advanced seceneginden developer options a tikliyoruz
+
+usb debugging özelligi acik olmali
+
+////////////////////////////////////////////////////////////////
+
+ayrica
+bilgisayarin arama sekmesinden Umgebungsvariable yazarak(environment) ortam degiskenleri 
+secenegini aciyoruz. 
+yeni seceneginden neue Benutzervariable üretiyoruz.
+adi: ANDRID_HOME
+degeri: C:\Users\ASD\AppData\Local\Android\Sdk
+*Android studio- more action- SDK manager- Android SDK- Android SDK Location
+kismindaki Path i aliriz.
+
+ANDRID_HOME yazan yerde "path" yazan kisma cift tikla
+yeni secenegine tikla
+%ANDROID_HOME%\tools yaz eklensin
+%ANDROID_HOME%\platform-tools yaz eklensin
+
+artik APPIUM desktop umuzu yükleyebiliriz.
+
+https://appium.io/ adresinden download butonuna basiyoruz.
+
+Appium-Server-GUI-windows-1.22.3-4.exe dosyasini indiiyoruz.
+
+kur deyip tüm kullanicilar icin olani seciyoruz.
+
+acilinca start diyerek baslatiyoruz ve The server running yazisini görüyoruz.
+
+////////////////////////////////////////////////////////////////////////
+
+IDE miz Intellij i aciyoruz
+
+File -new - project-maven 1.8 Java -next
+
+ad:AppiumKurulum-finish
+
+acildiktan sonra:
+
+pom.xml dosyasina appium ve testNG dependency lerini ekleyecegiz.
+
+</properties> taginin bitimine:
+
+<dependencies>
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>7.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.0.0</version>
+        </dependency>
+    </dependencies>
+    
+ekle ve sonrasinda taninmasi icin sag üstten güncelle.
+
+/////////////////////////////////////////////////////
+
+Intellij- src-test-java icine bir class olusturalim.
+
+adi Appium_Deneme olabilir.
+
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.Test;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class Appium_Deneme {
+
+    @Test
+    public void test() throws MalformedURLException {
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+
+        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10.0");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "1fd655780409");
+        desiredCapabilities.setCapability(MobileCapabilityType.APP, "C:\\Users\\ASD\\IdeaProjects\\AppiumKurulum\\calculator.apk");
+        //calculator.apk dosyasini projemizin adinin tam üzerine drag und drop yaptik.
+        //absolute path ini alarak buraya yapistirdik.
+
+        URL url = new URL("http://127.0.0.1:4723/wd/hub");
+        AndroidDriver<MobileElement> driver =new AndroidDriver<MobileElement>(url,desiredCapabilities);
+    }
+}
+
+//////////////////////////////////////////////////////////////////
+
+
