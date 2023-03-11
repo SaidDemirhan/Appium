@@ -25,7 +25,7 @@ Appium server da;
 
 Limitleri:
 -Appium, Android 4.1 in altini desteklemez.
--yavas calisir
+-yavas calisir.
 -toast mesajlari desteklemez.(yei uygulama yüklendi uyari msji gibi kalip mesajlar.
 
 -Appium ile birden cok testi farkli cihazlar icin yapabilirsiniz.
