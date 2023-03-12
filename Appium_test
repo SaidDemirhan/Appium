@@ -26,8 +26,51 @@ secilen elementin locate i sag tarafta cikiyor.
 
 unique olup olmadigini arama butonuna türüve locate ini yapzarsak görebiliriz.
 
+Eger cihaz ekrni degismisse mutlaka üst ortadaki yenile butonuna basarak yeni ekranin resmini alip ordan locate lere devam etmek gerekir
 
 
+///////////////////////////////////////////////////////////////////
+
+
+    @Test
+    public void test() throws MalformedURLException {
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+
+      
+
+        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10.0");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "1fd655780409");//bu kod yerine "Emulator" da yazilabilirdi.
+        desiredCapabilities.setCapability(MobileCapabilityType.APP, "C:\\Users\\ASD\\IdeaProjects\\AppiumKurulum\\calculator.apk");
+       
+
+        URL url = new URL("http://127.0.0.1:4723/wd/hub");
+        AndroidDriver<MobileElement> driver =new AndroidDriver<MobileElement>(url,desiredCapabilities);
+        
+        Thread.sleep(4000);
+
+        driver.findElementByAccessibilityId("....").click();
+        
+        //Eger XPath olarak yazmak isteresek;
+        // (//.......)[2]    //ikinci index e sahip olan yeri bulacaktir.
+        // eger xpath i text i yardimiyla belirtmek isteseydik;(örnegin tamam butonu)
+        // //...[@text='Tamam']
+        
+         driver.findElementByXPath("(//...)[2]").click();
+         
+         //Mesela title i test edelim:
+        
+        Thread.sleep(3000);
+        String expectedTitle= "Hosgeldiniz";
+        String actualTitle= driver.findElementByAccessibilityId("").getText();
+
+        Assert.assertEquals(actualTitle,expectedTitle);
+        
+        driver.quit();
+        
+        
+    }
 
 
 
