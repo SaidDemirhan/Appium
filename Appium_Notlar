@@ -33,5 +33,23 @@ Limitleri:
 -DesiredCapabilities(DC): yazilan kodlarin nerede kullanilacagini belirler ve cihazla baglanti kurar(appium servisi üzerinde cihazi bulur).
 
 
+@Test
+    public void test() throws MalformedURLException {
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
+        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10.0");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "1fd655780409");//bu kod yerine "Emulator" da yazilabilirdi.
+        desiredCapabilities.setCapability(MobileCapabilityType.APP, "C:\\Users\\ASD\\IdeaProjects\\AppiumKurulum\\calculator.apk");
+       
+        desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, true);
+        //application i yeniden yüklemeye calismamasi icin yazilan bir satir.
+        
+        AndroidDriver<MobileElement> driver =new AndroidDriver<MobileElement>(url,desiredCapabilities);
+        
+        Thread.sleep(4000);
+        driver.findElementById(".........").click();
+        driver.findElementByXPath("(...)[2]").click();  //ayni xpath e sahip olan 2. index i belirtir.
+    }
 
