@@ -1,0 +1,33 @@
+Appium server imizi aciyoruz ve The service is running yazisini(yesil)  görüyoruz.
+
+EK BILGI: indirme isareti o andaki Appium servirde yazilan log lari kaydediyor.
+Log denilen bizim appium server daki tüm steplerimizdir. 
+
+üstteki arama butonuna tikliyoruz; bu bizim Appium inspector umuz oluyor. tikla
+
+Desired Capabilities
+
+name: automationName  /text: dokunma  /value:UiAutomator2
+......
+noReset / boolean / true (cihazi yeniden yükleme demek)
+
+bilgileri JSN formatinda otomatik yaziyor.
+
+Start Session  tusuna bas.
+***Cihaz Mutlaka acik olmali ki test baslayabilsin!!!
+
+Ekranin fotogarini bize getirdi.
+
+Elementleri locate edebilmek icin:
+
+üstteki kisayol butonlarindan element sec butonuna (en soldaki) tikliyoruz ve istedigimiz elementi seciyoruz.
+
+secilen elementin locate i sag tarafta cikiyor.
+
+unique olup olmadigini arama butonuna türüve locate ini yapzarsak görebiliriz.
+
+
+
+
+
+
