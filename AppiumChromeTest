@@ -1,4 +1,17 @@
-@Test
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Set;
+
+public class AppiumCrome {
+
+    @Test
     public void test() throws MalformedURLException, InterruptedException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
@@ -7,15 +20,75 @@
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
         desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Emulator");//bu kod yerine "Emulator" da yazilabilirdi.
 
+        //browser da calisabilmek icin bu tanimi capability olarak  tanimlamamiz lazim.
         desiredCapabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "chrome");
 
         //eger uygun chrome driver yoksa calismayacaktir.
+        //https://chromedriver.chromium.org/downloads bu linkten chrom versiyon bilgisine ulasiyoruz.
+        //https://chromedriver.storage.googleapis.com/index.html bu linkten de tüm versiyonlara ulasiyoruz.
+
+        desiredCapabilities.setCapability("chromedriverExecutable","driverin bulundugu path");
+
+
         desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, true);
         //noReset / boolean / true (cihazi yeniden yükleme demek)
 
+        //Artik driver imizi olusturabiliriz:
 
         //URL url = new URL("http://127.0.0.1:4723/wd/hub");
         AndroidDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
 
         Thread.sleep(4000);
+
+        driver.get("https://www.amazon.com/");
+        //burada gittigimiz url web app olarak geliyor, nativ olarak gelmiyor
+        System.out.println("1 "+driver.getContext());//CHROMIUM
+
+        //ama appium nativ appa göre ayarlanmis bir program bu yüzden selenyumdan yardim aliyor.
+        //pencereleri handel etmemiz lazim ki program calisabilsin!
+
+        //mevcut olan app türlerini Set kontainer in icine eklyoruz.
+        Set contextNames=driver.getContextHandles();    //selenium daki getwindowshandle gibi
+
+        //artik forloop ile kontainer icindeki app türlerini yazdirabiliriz.
+        for (Object contextName:contextNames){
+            System.out.println(contextName);    //NATIVE_APP CHROMIUM
+            Thread.sleep(3000);
+            //eger container in icinde chromium varsa asagidakini calistir...
+            if (contextName.toString().contains("CHROMIUM")){   //chromium yerine baska bir kavram da yazabilir ona göre uyarla
+                //hangi app türünde calisacak ise onu set etmemiz gerekiyor
+                driver.context((String) contextName);   //web APP tan devam edecegim==CHROMIUM
+                Thread.sleep(10000);
+            }
+        }
+
+
+        //remote decive miz acik olacak sekilde cihazdan ve bilgisayardan chrome gir
+        //incele diyoruz ve sag üstteki üc noktaya basipmore tools deyip "remote decive" a tikliyoruz.
+            //eger böyle bir secenek yoksa https://developer.chrome.com/docs/devtools/remote-debugging/
+            //adresine gidiyoruz ve chrome://inspect#devices kodunu kopyaliyoruz.
+            //yeni sekmeye yapistirdigimizda cihazin bilgileri karsimiza cikacaktir.
+        //artik bu browser üzerinden telefonumuzu kontrol edebiliriz.
+        //url mizi giriyoruz ve cihazimiz yazdigimiz url ye gidiyor
+
+        //cihazimizdaki acilmis olan sekmeler browser da görülüyor
+        //inpect dedigimizde wep browser olarak acilacaktir.
+
+        System.out.println("2 "+driver.getContext());//CHROMIUM
+
+        //artik istedigimiz elementi locate edebiliriz.
+
+        driver.findElementById("").click();
+
+        Thread.sleep(3000);
+
+        //girdigimiz sayfadaki bir elementin görünür olup olmadigini test edelim
+
+        Assert.assertTrue(driver.findElementByXPath("").isDisplayed());
+
+
+        System.out.println("3 "+driver.getContext());//CHROMIUM
+        //test ettigimize göre app i kapatabiliriz.
+        driver.quit();
     }
+}
