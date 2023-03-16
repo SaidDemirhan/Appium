@@ -1,3 +1,11 @@
 Yalnizca java 8 de calisir..
-....
-baska bir Appium aracidir diyebiliriz.
+
+bilgisayarin c dosyasinda iken gizli dosyalari acip appdata klosörünü buluyoruz.
+eger burda yok ise.android klosorunun icindedir.
+appData-local-Android-sdk-tools-bin-uiautomatorviewer.bat
+cift tikladiktan sonra bir pencere aciliyor.
+
+sanal cihazimizi actiktan sonra ekranda görünmeli
+telefon ile uiAutomatorViewer i baglamak icin sol ustteki telefon simgesine tikladiktan sonra 
+telefon ekranimiz gelmis oluyor.
+sonrasinda locate lerimizi alabiliriz.
