@@ -9,3 +9,7 @@ sanal cihazimizi actiktan sonra ekranda görünmeli
 telefon ile uiAutomatorViewer i baglamak icin sol ustteki telefon simgesine tikladiktan sonra 
 telefon ekranimiz gelmis oluyor.
 sonrasinda locate lerimizi alabiliriz.
+
+ayni diger kod yazimlari burada da gecerlidir.
+
+
